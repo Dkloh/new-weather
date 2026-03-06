@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-const API_KEY = '4a3c56ad48296808490fd2d32e0e7a7c'; // Will put in env file
-const BASE_URL = 'https://api.openweathermap.org/data/2.5';
-=======
 const BASE_URL = '/api/weather';
->>>>>>> 942a4af (move API key to serverless function)
 
 // Weather icon mapping
 const iconMap = {
