@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 const API_KEY = '4a3c56ad48296808490fd2d32e0e7a7c'; // Will put in env file
 const BASE_URL = 'https://api.openweathermap.org/data/2.5';
+=======
+const BASE_URL = '/api/weather';
+>>>>>>> 942a4af (move API key to serverless function)
 
 // Weather icon mapping
 const iconMap = {
@@ -43,7 +47,7 @@ async function searchWeather(defaultCity) {
 
     try {
         // Get current weather
-        const currentResponse = await fetch(`${BASE_URL}/weather?q=${city}&appid=${API_KEY}&units=imperial`);
+        const currentResponse = await fetch(`${BASE_URL}?q=${city}&units=imperial`);
         
         if (!currentResponse.ok) {
             throw new Error('City not found');
@@ -52,7 +56,7 @@ async function searchWeather(defaultCity) {
         const currentData = await currentResponse.json();
 
         // Get forecast
-        const forecastResponse = await fetch(`${BASE_URL}/forecast?q=${city}&appid=${API_KEY}&units=imperial`);
+        const forecastResponse = await fetch(`${BASE_URL}?type=forecast&q=${city}&units=imperial`);
         const forecastData = await forecastResponse.json();
 
         displayWeather(currentData, forecastData);
@@ -80,10 +84,10 @@ async function getCurrentLocation() {
             showLoading();
             
             try {
-                const response = await fetch(`${BASE_URL}/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=imperial`);
+                const response = await fetch(`${BASE_URL}?lat=${latitude}&lon=${longitude}&units=imperial`);
                 const data = await response.json();
                 
-                const forecastResponse = await fetch(`${BASE_URL}/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=imperial`);
+                const forecastResponse = await fetch(`${BASE_URL}?type=forecast&lat=${latitude}&lon=${longitude}&units=imperial`);
                 const forecastData = await forecastResponse.json();
                 
                 displayWeather(data, forecastData);
